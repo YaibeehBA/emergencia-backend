@@ -41,7 +41,7 @@ class Settings(BaseSettings):
     smtp_password: Optional[str] = None
     sender_email: str = "noreply@emergencia-sync.com"
     sender_name: str = "Emergencia-Sync"
-    mock_email: bool = True  
+    mock_email: bool = False  
 
     # SECURITY
     secret_key: str = "tu-secret-key-cambia-en-produccion"
