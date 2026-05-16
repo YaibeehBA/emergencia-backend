@@ -1,6 +1,6 @@
 # Backend - Emergencia-Sync
 
-Backend profesional en **FastAPI** con **ORM SQLAlchemy** para el sistema de alerta temprana de ingresos a emergencias.
+Backend en **FastAPI** con **ORM SQLAlchemy** para el sistema de alerta temprana de ingresos a emergencias.
 
 ## Estructura del Proyecto
 
