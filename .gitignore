@@ -1,0 +1,10 @@
+# Backend
+emergencia-backend/.env
+emergencia-backend/__pycache__/
+emergencia-backend/venv/
+emergencia-backend/*.db
+
+# Frontend
+emergencia-frontend/node_modules/
+emergencia-frontend/.next/
+emergencia-frontend/dist/
