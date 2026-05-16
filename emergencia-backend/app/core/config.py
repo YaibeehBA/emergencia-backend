@@ -49,11 +49,12 @@ class Settings(BaseSettings):
     access_token_expire_minutes: int = 30
 
     # CORS
-    cors_origins: list = [
-        "http://localhost:3000",
-        "http://localhost:8000",
-        "http://localhost",
-    ]
+   cors_origins: list = [
+    "http://localhost:3000",
+    "http://localhost:8000",
+    "http://localhost",
+    "https://emergencia-fronted.up.railway.app",
+]
 
     # LOGGING
     log_level: str = "INFO"
