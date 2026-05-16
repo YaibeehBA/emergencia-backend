@@ -20,7 +20,6 @@ setup_logging(
     log_file=settings.log_file,
 )
 
-# Verificar configuración
 if settings.debug:
     logging.getLogger("sqlalchemy.engine").setLevel(logging.INFO)
     logging.info("Modo DEBUG activado - Logs SQL habilitados")
@@ -31,8 +30,19 @@ app_logger = get_logger("main")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     app_logger.info("Iniciando aplicación...")
+    
+    # Crear tablas
     init_db()
     app_logger.info("Base de datos inicializada")
+    
+    # Poblar datos de prueba
+    try:
+        from data.seed import populate_database
+        populate_database()
+        app_logger.info("Datos de prueba cargados")
+    except Exception as e:
+        app_logger.warning(f"No se pudieron cargar datos: {str(e)}")
+    
     yield
     app_logger.info("Apagando aplicación...")
 
@@ -44,7 +54,6 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.cors_origins,
@@ -53,7 +62,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Rutas
 app.include_router(api_router)
 
 
@@ -74,5 +82,5 @@ if __name__ == "__main__":
         host="localhost",
         port=8000,
         reload=settings.debug,
-        reload_excludes=["logs/*", "*.log", "*.db", "logs/"],  # Excluir logs
+        reload_excludes=["logs/*", "*.log", "*.db", "logs/"],
     )
